@@ -1,6 +1,21 @@
+
+<script lang="ts" setup>
+
+  const runtimeConfig = useRuntimeConfig()
+  const appcConfig = useAppConfig()
+
+
+</script>
+
 <template>
-  <div>
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
-  </div>
+
+  
+  <NuxtLayout>
+
+    <NuxtPage />
+
+  </NuxtLayout>
+  
 </template>
+
+
