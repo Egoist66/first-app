@@ -1,4 +1,3 @@
-import { NuxtLink } from '../.nuxt/components';
 
 <script lang="ts" setup>
 
@@ -8,11 +7,17 @@ import { NuxtLink } from '../.nuxt/components';
 
 <template>
 
-    <NuxtLink to="/contacts">Contacts</NuxtLink>
+    
 
+    <div>
+        <Head>
+            <Title>Home</Title>
+        </Head>
+        
+        <NuxtRouteAnnouncer />
 
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome  />
+        <h1>Home</h1>
+    </div>
 
   
    

@@ -1,0 +1,41 @@
+.isDark {
+    background-color: rgb(14, 0, 46);
+    color: white;
+}
+
+body,html {
+    font-size: 18px;
+    min-height: 100%;
+}
+
+main {
+    min-height: 100vh;
+}
+
+header {
+    padding: 10px 0px 10px 0px;
+
+    & a {
+        color: white;
+
+        &:hover {
+            color:#34E49C;
+        }
+    }
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a.active {
+    color: #34E49C;
+}
