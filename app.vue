@@ -13,7 +13,9 @@ function getItem(item: string) {
 
 <template>
   <NuxtLayout>
+
     <NuxtPage />
+   
   </NuxtLayout>
 </template>
 

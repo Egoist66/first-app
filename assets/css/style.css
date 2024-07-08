@@ -17,9 +17,14 @@ header {
 
     & a {
         color: white;
+        transition: 0.3s all ease;
+
 
         &:hover {
-            color:#34E49C;
+            background-color:#34E49C;
+            transition: 0.3s all ease;
+
+
         }
     }
 }
@@ -35,7 +40,12 @@ nav {
     margin: 0 auto;
     padding: 0 20px;
 }
-
+nav a {
+    padding: 5px;
+    border-radius: 6px;
+}
 a.active {
-    color: #34E49C;
+    background-color: #34E49C;
+    transition: 0.3s all ease;
+
 }
