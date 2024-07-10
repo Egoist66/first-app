@@ -12,10 +12,9 @@ function getItem(item: string) {
 </script>
 
 <template>
+  <NuxtLoadingIndicator color="#34E49C" :height="5" :duration="2000" />
   <NuxtLayout>
-
     <NuxtPage />
-   
   </NuxtLayout>
 </template>
 
@@ -24,6 +23,7 @@ function getItem(item: string) {
 .page-leave-active {
   transition: all 0.4s;
 }
+
 .page-enter-from,
 .page-leave-to {
   opacity: 0;

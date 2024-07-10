@@ -5,9 +5,11 @@
 // @ts-ignore
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
+
   experimental: {
     viewTransition: true
   },
+
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
     head: {
@@ -47,5 +49,11 @@ export default defineNuxtConfig({
     
   },
 
-  modules: ['@nuxtjs/tailwindcss']
+  modules: ['@nuxtjs/tailwindcss', '@nuxt/image'],
+
+  devtools: {
+    timeline: {
+      enabled: true
+    }
+  }
 })

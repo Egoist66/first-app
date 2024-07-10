@@ -7,7 +7,7 @@ const route = useRoute()
 
 const product = await useFetch<Product>(`https://fakestoreapi.com/products/${route.params.id}`, {
    
-   lazy: true,
+   lazy: false,
    key: route?.params?.id.toString()
 })
 

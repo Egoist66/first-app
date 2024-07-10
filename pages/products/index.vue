@@ -30,10 +30,12 @@ const { data: products, status, refresh } = await useFetch<Products>("https://fa
     server: true,
     cache: 'default',
     key: "products",
-    lazy: true,
+    
 });
+const app = useNuxtApp()
+const {data} = useNuxtData<Products>('products')
 
-console.log(products);
+//console.log(app);
 </script>
 
 <template>
@@ -49,11 +51,17 @@ console.log(products);
             </div>
         </div>
         <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div v-for="product in products" :key="product.id" class="bg-white shadow-md rounded-md p-5">
+            <div v-for="product in data" :key="product.id" class="bg-white shadow-md rounded-md p-5">
                 <a target="_blank" :href="product.image">
-                    <img :src="product.image" class="w-full h-40 object-cover mb-2" />
+                    <NuxtImg 
+                        :alt="product.title"
+                        loading='lazy' 
+                        :quality="90"
+                        :src="product.image" 
+                        class="w-full h-40 object-cover mb-2" 
+                    />
                 </a>
-                <h2 class="text-lg text-gray-900 font-medium">{{ product.title }}</h2>
+                <h2 :title="product.title" class="text-lg text-gray-900 font-medium truncate">{{ product.title }}</h2>
                 <p class="text-gray-500 mt-2">Category: {{ product.category }}</p>
                 <p class="text-gray-900 font-medium text-lg mt-2">{{ product.price }}$</p>
                 <p class="text-gray-500 mt-2">Rating: {{ product.rating.rate }}</p>
@@ -61,7 +69,7 @@ console.log(products);
 
                 <div class="flex gap-2 items-center">
 
-                    <button class="bg-blue-500 text-white px-4 py-2 mt-4 rounded-md hover:bg-blue-600">
+                    <button @click="console.log('Works')" class="bg-blue-500 text-white px-4 py-2 mt-4 rounded-md hover:bg-blue-600">
                         Add to cart
                     </button>
                     <NuxtLink class="bg-blue-500 text-white px-4 py-2 mt-4 rounded-md hover:bg-blue-600"

@@ -7,3 +7,10 @@ body {
     @apply bg-gray-800;
     @apply text-white;
 }
+
+input {
+    @apply border-gray-300;
+    @apply rounded-md;
+    @apply p-2;
+    @apply text-black;
+}
