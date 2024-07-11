@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {useRoute} from "nuxt/app";
 import type { Product } from "./index.vue";
-import { debounce } from "lodash";
 
 const route = useRoute()
 const router = useRouter()
@@ -27,16 +26,16 @@ if(!product.value){
     })
 }
 
-const debouncedUpdateRoute = debounce((newId) => {
-    if(newId) {
+
+
+watch(id, (newid) => {
+    if(newid) {
         router.replace({
-            path: `/products/${newId}`,
+            path: `/products/${newid}`,
             query: {...route.query}
         });
     }
-}, 1000);
-
-watch(id, debouncedUpdateRoute);
+} );
 
 
 
