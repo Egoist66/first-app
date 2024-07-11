@@ -13,9 +13,14 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
     head: {
+      
       link: [
         {rel: 'stylesheet', href: ''}  
+      ],
+      meta:[
+        {name: 'viewport', content: 'width=device-width, initial-scale=1'}
       ]
+    
     }
   },
 

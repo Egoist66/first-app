@@ -2,6 +2,9 @@
 const runtimeConfig = useRuntimeConfig();
 const appcConfig = useAppConfig();
 
+
+const name = useState("name", () => getItem("name") || "John Doe");
+
 function getItem(item: string) {
   if (import.meta.client) {
     return localStorage.getItem(item);

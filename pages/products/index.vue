@@ -25,7 +25,7 @@ useHead({
 //     redirectTo: '/products/1'
 // })
 
-const { data: products, status, refresh } = await useFetch<Products>("https://fakestoreapi.com/products", {
+const { data: products, status, refresh, clear } = await useFetch<Products>("https://fakestoreapi.com/products", {
     responseType: "json",
     server: true,
     cache: 'default',
@@ -51,7 +51,7 @@ const {data} = useNuxtData<Products>('products')
             </div>
         </div>
         <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div v-for="product in data" :key="product.id" class="bg-white shadow-md rounded-md p-5">
+            <div v-memo="data" v-for="product in data" :key="product.id" class="bg-white shadow-md rounded-md p-5">
                 <a target="_blank" :href="product.image">
                     <NuxtImg 
                         :alt="product.title"

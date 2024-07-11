@@ -1,34 +1,61 @@
 <script setup lang="ts">
 import {useRoute} from "nuxt/app";
 import type { Product } from "./index.vue";
+import { debounce } from "lodash";
 
 const route = useRoute()
+const router = useRouter()
+const id = useState("id", () => route.params.id)
 
-const {data: product, status} = await useFetch<Product>(`https://fakestoreapi.com/products/${route.params.id}`, {
+
+const {data: product, status, refresh} = await useFetch<Product>(`https://fakestoreapi.com/products/${id.value}`, {
    
    lazy: false,
-   key: route?.params?.id.toString()
+   key: `product-${id.value}`,
+   retry: 3
+//    query: {
+//        id
+//    }
 })
 
 if(!product.value){
     throw createError({
         statusCode: 404, 
         statusMessage: 'Product not found',
-        fatal: true
+        fatal: true,
+        
     })
 }
 
+const debouncedUpdateRoute = debounce((newId) => {
+    if(newId) {
+        router.replace({
+            path: `/products/${newId}`,
+            query: {...route.query}
+        });
+    }
+}, 1000);
+
+watch(id, debouncedUpdateRoute);
+
+
 
 useHead({
-    title: `Product - ${product.value?.title ?? ''}`
+    title: `Product - ${product.value?.title ?? ''}`,
+    meta: [
+        {name: 'description', content: product.value?.description ?? ''},
+    ]
+   
 
 })
+
 
 </script>
 
 <template>
 
     <div>
+       
         <div v-if="status === 'pending'" class="flex justify-center items-center h-screen">
             <div class="loader ease-linear indeterminate:!dark:text-white rounded-full border-8 border-t-8 border-gray-200 h-32 w-32"></div>
         </div>
@@ -41,8 +68,10 @@ useHead({
             <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
                 Add to cart
             </button>
+            <input class="block my-5"  autofocus type="number" placeholder="Enter id" v-model="id">
+         
             <button @click="$router.back()" class="bg-blue-500 text-white px-4 py-2 mt-4 rounded-md hover:bg-blue-600">Back</button>
-            
+
         </div>
     </div>
 
@@ -55,4 +84,11 @@ p {
     color: white;
 }
 
+
+.router-link-active {
+    display: none;
+}
+
 </style>
+
+
