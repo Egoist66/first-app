@@ -4,6 +4,7 @@ import type { Product } from "./index.vue";
 
 const route = useRoute()
 const router = useRouter()
+
 const id = useState("id", () => route.params.id)
 
 
